@@ -5,6 +5,7 @@ import { parseArgs } from 'node:util'
 import { existsSync } from 'node:fs'
 import { defaultHistoryPath, readHistory } from './history.js'
 import { embedAll, rank } from './search.js'
+import { cachedVectors } from './cache.js'
 
 const USAGE = 'Usage: npm run find -- "what you remember" [--history <file>] [--top <n>]'
 
@@ -51,9 +52,9 @@ try {
     onProgress: ({ percentage }) => status(`loading model ${Math.floor(percentage)}%`)
   })
 
-  const vectors = await embedAll(modelId, commands.map((c) => c.command), (done, total) => {
-    status(`reading ${done}/${total} commands`)
-  })
+  const { vectors } = await cachedVectors(GTE_LARGE_FP16.name, commands.map((c) => c.command), (missing) =>
+    embedAll(modelId, missing, (done, total) => status(`reading ${done}/${total} new commands`))
+  )
   const { embedding: queryVector } = await embed({ modelId, text: query })
   if (process.stderr.isTTY) process.stderr.write('\r\x1b[K')
 
