@@ -1,0 +1,51 @@
+: 1780308000:0;brew install ffmpeg
+: 1780333331:0;ffmpeg -i lecture.mov -vcodec libx264 -crf 28 lecture-small.mp4
+: 1780358793:0;ffmpeg -i interview.mp4 -vn -acodec copy interview.aac
+: 1780384386:0;ls
+: 1780410110:0;cd ~/projects/thesis
+: 1780435965:0;git status
+: 1780461951:0;git reset --soft HEAD~1
+: 1780488068:0;git log --oneline --graph --all
+: 1780514316:0;git stash push -m 'wip before rebase'
+: 1780540695:0;git rebase -i HEAD~3
+: 1780567205:0;git remote set-url origin git@github.com:someone/thesis.git
+: 1780593846:0;ssh -i ~/.ssh/lab_key student@lab-server.example.edu
+: 1780620618:0;scp results.csv student@lab-server.example.edu:~/runs/
+: 1780647521:0;rsync -avz --exclude node_modules ./site/ deploy@203.0.113.10:/var/www/site/
+: 1780674555:0;docker compose up -d --build
+: 1780701720:0;docker ps -a
+: 1780729016:0;docker system prune -af --volumes
+: 1780756443:0;docker exec -it postgres psql -U app -d appdb
+: 1780784001:0;lsof -i :3000
+: 1780811690:0;kill -9 48213
+: 1781540169:0;docker run --rm \
+  -v $(pwd):/data \
+  -p 8888:8888 jupyter/scipy-notebook
+: 1780839510:0;find . -name '*.log' -mtime +30 -delete
+: 1780867461:0;du -sh * | sort -h
+: 1780895543:0;tar -czvf backup-2026-09.tar.gz ~/Documents/thesis
+: 1780923756:0;unzip -l dataset.zip
+: 1780952100:0;python3 -m venv .venv && source .venv/bin/activate
+: 1780980575:0;pip install -r requirements.txt
+: 1781009181:0;python3 -m http.server 8080
+: 1781037918:0;npm run dev
+: 1781066786:0;npx prettier --write 'src/**/*.js'
+: 1781095785:0;sed -i '' 's/http:/https:/g' config/*.yml
+: 1781124915:0;grep -rn 'TODO' src --include=*.ts
+: 1781154176:0;curl -s https://api.example.com/v1/items | jq '.items[] | .name'
+: 1781183568:0;curl -H 'Authorization: Bearer example-token-1234' https://api.example.com/v1/me
+: 1781213091:0;export DATABASE_URL=postgres://app:example-password@localhost:5432/appdb
+: 1781242745:0;openssl rand -hex 32
+: 1781272530:0;convert scan.png -resize 50% scan-small.png
+: 1781302446:0;pdftotext paper.pdf - | wc -w
+: 1781332493:0;yt-dlp -x --audio-format mp3 'https://www.youtube.com/watch?v=example'
+: 1781362671:0;networksetup -setdnsservers Wi-Fi 1.1.1.1 8.8.8.8
+: 1781392980:0;sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+: 1781423420:0;defaults write com.apple.screencapture location ~/Pictures/Screenshots
+: 1781453991:0;caffeinate -d -t 3600
+: 1781484693:0;crontab -e
+: 1781515526:0;chmod +x scripts/deploy.sh
+: 1781546490:0;git push
+: 1781577585:0;clear
+: 1781608811:0;git push
+: 1781640168:0;echo 'মিঃ�িং নৃ�ঃ�' > note.txt
