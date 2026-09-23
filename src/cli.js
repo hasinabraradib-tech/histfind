@@ -6,8 +6,9 @@ import { existsSync } from 'node:fs'
 import { defaultHistoryPath, readHistory } from './history.js'
 import { embedAll, rank } from './search.js'
 import { cachedVectors } from './cache.js'
+import { redact } from './redact.js'
 
-const USAGE = 'Usage: npm run find -- "what you remember" [--history <file>] [--top <n>]'
+const USAGE = 'Usage: npm run find -- "what you remember" [--history <file>] [--top <n>] [--show-secrets]'
 
 const tty = process.stdout.isTTY
 const dim = (text) => (tty ? `\x1b[2m${text}\x1b[0m` : text)
@@ -28,7 +29,8 @@ try {
   const { values, positionals } = parseArgs({
     options: {
       history: { type: 'string' },
-      top: { type: 'string', default: '5' }
+      top: { type: 'string', default: '5' },
+      'show-secrets': { type: 'boolean', default: false }
     },
     allowPositionals: true
   })
@@ -60,7 +62,8 @@ try {
 
   console.log(`\n${bold('Closest to')} "${query}" ${dim(`in ${commands.length} commands`)}\n`)
   for (const hit of rank(queryVector, commands, vectors, top)) {
-    const lines = hit.command.split('\n')
+    const shown = values['show-secrets'] ? hit.command : redact(hit.command)
+    const lines = shown.split('\n')
     console.log(`  ${lines[0]}${lines.slice(1).map((l) => `\n  ${l}`).join('')}`)
     console.log(`  ${dim(`${hit.score.toFixed(2)} · ${describeUse(hit)}`)}\n`)
   }
