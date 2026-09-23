@@ -1,0 +1,14 @@
+[
+  { "query": "shrink a video file", "expect": "ffmpeg -i lecture.mov" },
+  { "query": "undo my last git commit", "expect": "git reset --soft HEAD~1" },
+  { "query": "free up disk space used by docker", "expect": "docker system prune" },
+  { "query": "which program is using port 3000", "expect": "lsof -i :3000" },
+  { "query": "pull the audio out of a video", "expect": "ffmpeg -i interview.mp4 -vn" },
+  { "query": "delete old log files", "expect": "find . -name '*.log'" },
+  { "query": "see which folders take the most space", "expect": "du -sh" },
+  { "query": "keep my mac from sleeping", "expect": "caffeinate" },
+  { "query": "start a quick web server for this folder", "expect": "python3 -m http.server" },
+  { "query": "change where screenshots are saved", "expect": "defaults write com.apple.screencapture" },
+  { "query": "fix dns not resolving", "expect": "dscacheutil -flushcache" },
+  { "query": "generate a random secret key", "expect": "openssl rand" }
+]

@@ -11,7 +11,8 @@
     "histfind": "src/cli.js"
   },
   "scripts": {
-    "find": "node src/cli.js"
+    "find": "node src/cli.js",
+    "eval": "node test/eval.js"
   },
   "dependencies": {
     "@qvac/sdk": "^0.19.1"
