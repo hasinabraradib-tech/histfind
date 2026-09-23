@@ -1,0 +1,19 @@
+{
+  "name": "histfind",
+  "version": "0.1.0",
+  "description": "Search your shell history by meaning, entirely on-device with Tether's QVAC SDK.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.17"
+  },
+  "bin": {
+    "histfind": "src/cli.js"
+  },
+  "scripts": {
+    "find": "node src/cli.js"
+  },
+  "dependencies": {
+    "@qvac/sdk": "^0.19.1"
+  }
+}
